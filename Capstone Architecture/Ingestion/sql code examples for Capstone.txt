@@ -1,0 +1,64 @@
+select distinct ln_seq_number,curr_ln_delq_stas from npl_delq_loans
+where curr_ln_delq_stas > '1' ;
+
+
+select * from npl_data_orig_old INNER JOIN npl_delq_loans
+ON npl_data_orig_old.ln_seq_number = npl_delq_loans.ln_seq_number
+
+SELECT reltuples as approximate_row_count FROM pg_class WHERE relname = 'monthly_performance'
+
+select * from npl_data_orig_old INNER JOIN npl_delq_loans
+ON npl_data_orig_old.ln_seq_number = npl_delq_loans.ln_seq_number
+where curr_ln_delq_stas > '0' 
+limit 10000;
+
+
+
+excell
+change text/string to actual date value 
+=DATE(LEFT(B2,4),RIGHT(B2,2),1)
+
+select to_date(mth_reprt_prd, 'YYYYMM') From monthly_performance limit 100;
+
+select * from npl_data_orig_old INNER JOIN npl_delq_loans
+ON npl_data_orig_old.ln_seq_number = npl_delq_loans.ln_seq_number
+where curr_ln_delq_stas > '3'; 
+
+select ln_seq_number, to_date(mth_reprt_prd, 'YYYYMM') as mth_reprt_prd,
+
+From monthly_performance limit 100;
+
+
+create table monthly_performance_v1 as select ln_seq_number, to_date(mth_reprt_prd, 'YYYYMM') as mth_reprt_prd,
+curr_actl_upb,
+curr_ln_delq_stas,
+ln_age,
+remng_mth,
+rep_flag,
+mod_flag,
+zero_bal_cd,
+to_date(zero_bal_eff_dt, 'YYYYMM') as zero_bal_eff_dt,
+curr_int_rt,
+curr_defrd_upb,
+ddlpi,
+mi_upb,
+net_sls_amt,
+non_mi_amt,
+exp_amt,
+lgl_cst,
+other_cst,
+ti_ins_cst,
+misc_exp,
+loss_cal,
+mod_cst,
+step_mod_flag,
+dfrd_pmt_mod,
+eltv
+From monthly_performance;
+
+select * from monthly_performance INNER JOIN origination_table
+ON monthly_performance.ln_seq_number = origination_table.ln_seq_number
+where monthly_performance.ln_age > '24'
+limit 100;
+
+select min (first_payment_date) from npl_data_orig_old;
